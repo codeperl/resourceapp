@@ -1,0 +1,217 @@
+/* open-sans-300 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300;
+  src: local(""), url(/fonts/open-sans-v28-latin-300.woff2?c4d56a65291faa29cd8d1fc3180711be) format("woff2"), url(/fonts/open-sans-v28-latin-300.woff?b75dbf5a2eca01c34533ae920e22629b) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url(/fonts/open-sans-v28-latin-regular.woff2?a2d02404d087c7c068d4266172a0933d) format("woff2"), url(/fonts/open-sans-v28-latin-regular.woff?6f6541140f45c8410bb8b92ce602935c) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-600 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url(/fonts/open-sans-v28-latin-600.woff2?87da65d8301dc2218555c9c0a9bb3f49) format("woff2"), url(/fonts/open-sans-v28-latin-600.woff?28125e6f4f0671dbfa7bed992fbe666c) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url(/fonts/open-sans-v28-latin-700.woff2?166dc5efb248e57520964b354e0b38bb) format("woff2"), url(/fonts/open-sans-v28-latin-700.woff?043b0bf0b516558445d62ca7104d7785) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-300italic - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: italic;
+  font-weight: 300;
+  src: local(""), url(/fonts/open-sans-v28-latin-300italic.woff2?10c4143bdea29ed02ad18a49535f0ea3) format("woff2"), url(/fonts/open-sans-v28-latin-300italic.woff?41e8c90e0e5d178ef74a34da6d5ee382) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-italic - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: italic;
+  font-weight: 400;
+  src: local(""), url(/fonts/open-sans-v28-latin-italic.woff2?e237a3ae4d5c09be325c17663d81f779) format("woff2"), url(/fonts/open-sans-v28-latin-italic.woff?540b4021d70c26c5ac2fcebad83b02bb) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-600italic - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: italic;
+  font-weight: 600;
+  src: local(""), url(/fonts/open-sans-v28-latin-600italic.woff2?72e00e31c164e945ccd40d4a161ab43e) format("woff2"), url(/fonts/open-sans-v28-latin-600italic.woff?666af6db4122ae8e2d7c7a654436acfc) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-700italic - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: italic;
+  font-weight: 700;
+  src: local(""), url(/fonts/open-sans-v28-latin-700italic.woff2?41c8cfc38385ea3f5e287be2f2de218f) format("woff2"), url(/fonts/open-sans-v28-latin-700italic.woff?632467a4177e8b6df7f4f953f68b6324) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-300 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  src: local(""), url(/fonts/roboto-v29-latin-300.woff2?0109a2ace896a506a0aac5f7a94a8efb) format("woff2"), url(/fonts/roboto-v29-latin-300.woff?877b9231e5bb1f939daa37646dca9998) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-300italic - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 300;
+  src: local(""), url(/fonts/roboto-v29-latin-300italic.woff2?aa3d9e95817700a9a3344b234d796473) format("woff2"), url(/fonts/roboto-v29-latin-300italic.woff?dd07640d74d4485c4e4be31133fa92d3) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url(/fonts/roboto-v29-latin-regular.woff2?4673b4537a84c7f7a130799aa6af329b) format("woff2"), url(/fonts/roboto-v29-latin-regular.woff?9b78ea3bc4f00e508f01331aa0733db8) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-italic - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 400;
+  src: local(""), url(/fonts/roboto-v29-latin-italic.woff2?d52a565af9d2ae4575124c50911a9945) format("woff2"), url(/fonts/roboto-v29-latin-italic.woff?c8864b37568c1e60cc4437c78c60caba) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-500 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""), url(/fonts/roboto-v29-latin-500.woff2?869888415d0b1a99ae5c7ac7c4575ccf) format("woff2"), url(/fonts/roboto-v29-latin-500.woff?ddd11dabeca881d49f5966f9a769dc97) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-500italic - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 500;
+  src: local(""), url(/fonts/roboto-v29-latin-500italic.woff2?f8d81cb45fd5293f176c09040dcc37df) format("woff2"), url(/fonts/roboto-v29-latin-500italic.woff?1633b6b9993ab5dccd7bebfa6d11ddd9) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url(/fonts/roboto-v29-latin-700.woff2?0682ca7f74351d42bf73ed1e95572bfe) format("woff2"), url(/fonts/roboto-v29-latin-700.woff?0344cc3c5cd0959f5f92fdb3d8168fed) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-700italic - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 700;
+  src: local(""), url(/fonts/roboto-v29-latin-700italic.woff2?c756cf083283e3aed4201f0d90e29d6e) format("woff2"), url(/fonts/roboto-v29-latin-700italic.woff?43c077649e51429fefb9f694b5d532f7) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* work-sans-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url(/fonts/work-sans-v16-latin-regular.woff2?63f899e318a04c9f5b6c3dc3535948b7) format("woff2"), url(/fonts/work-sans-v16-latin-regular.woff?553efbb7704cfb3f61f77929869ffb3d) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* cutive-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Cutive";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/cutive-v15-latin-regular.eot?94f14d444a3d3cb8a6032e18e1deb331); /* IE9 Compat Modes */
+  src: local(""), url(/fonts/cutive-v15-latin-regular.eot?94f14d444a3d3cb8a6032e18e1deb331?#iefix) format("embedded-opentype"), url(/fonts/cutive-v15-latin-regular.woff2?4d6e61af6ab6ee34d2b8e4e6441d8e15) format("woff2"), url(/fonts/cutive-v15-latin-regular.woff?2881e021b136ce97d21d6fb581588572) format("woff"), url(/fonts/cutive-v15-latin-regular.ttf?2672c632a923d79e960f60527a921ed4) format("truetype"), url(/fonts/cutive-v15-latin-regular.svg?fcd055411793e0f56f0efdb71fc61259#Cutive) format("svg"); /* Legacy iOS */
+}
+/* special-elite-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Special Elite";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url(/fonts/special-elite-v16-latin-regular.woff2?210560970aebbb05cdc56519137dc047) format("woff2"), url(/fonts/special-elite-v16-latin-regular.woff?7286f72b653d39333cc88acbd504a04d) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* nunito-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url(/fonts/nunito-v22-latin-regular.woff2?f0f97349170ecf46ba43d6b03296b0fc) format("woff2"), url(/fonts/nunito-v22-latin-regular.woff?eebc108fa531d8621afecbff25c90d9f) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* nunito-600 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url(/fonts/nunito-v22-latin-600.woff2?9c3cdf904cf5f8824c2a8ba8f98d0a18) format("woff2"), url(/fonts/nunito-v22-latin-600.woff?3f6ca9320d9f6c6a338427abd108b033) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* nunito-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url(/fonts/nunito-v22-latin-700.woff2?5205e9be0f8bded7ec757970b20ba37b) format("woff2"), url(/fonts/nunito-v22-latin-700.woff?5949335742ca82e0052aae77d047a4bb) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* signika-300 - latin-ext_latin */
+@font-face {
+  font-display: swap;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 300;
+  src: local(""), url(/fonts/signika-v18-latin-ext_latin-300.woff2?6cd85deb8d1cd472a6fceede923f41e7) format("woff2"), url(/fonts/signika-v18-latin-ext_latin-300.woff?41fd1ae0a1627770ccb448af6655ab66) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* signika-regular - latin-ext_latin */
+@font-face {
+  font-display: swap;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url(/fonts/signika-v18-latin-ext_latin-regular.woff2?cd366e5fd28694f8235b9b400e77af14) format("woff2"), url(/fonts/signika-v18-latin-ext_latin-regular.woff?728e9b160b380a474634d62515254c87) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* signika-500 - latin-ext_latin */
+@font-face {
+  font-display: swap;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""), url(/fonts/signika-v18-latin-ext_latin-500.woff2?6a57e8c2afc6d5d8c29683e486371435) format("woff2"), url(/fonts/signika-v18-latin-ext_latin-500.woff?33f27997248fad3466ad7131feeb7c1a) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* signika-600 - latin-ext_latin */
+@font-face {
+  font-display: swap;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url(/fonts/signika-v18-latin-ext_latin-600.woff2?e4460f46b0539823ba687c729095807a) format("woff2"), url(/fonts/signika-v18-latin-ext_latin-600.woff?4edefc1cc0e17e70aa8f0b0942514ff5) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* signika-700 - latin-ext_latin */
+@font-face {
+  font-display: swap;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url(/fonts/signika-v18-latin-ext_latin-700.woff2?1ad51b7a516049bc415fa94bd40463b5) format("woff2"), url(/fonts/signika-v18-latin-ext_latin-700.woff?b162f192ee9f0e18c3a71100aa59c6f8) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}

@@ -1,0 +1,74 @@
+/*@import "~bootstrap/scss/bootstrap";*/
+a {
+  text-decoration: none;
+}
+
+section {
+  padding: 10px 0;
+}
+
+.max-line-width {
+  color: #444;
+  /*box-shadow: 0 0 5px rgba(214, 215, 216, 0.6);*/
+  border: 1px solid rgba(214, 215, 216, 0.6);
+  padding: 20px 0 30px 0;
+  margin-bottom: 30px;
+}
+
+.max-line-width * {
+  max-width: 45em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.wrap {
+  font-family: Signika, Nunito, sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.7;
+}
+
+#hero-no-slider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: url(/images/hero-bg.png?0508a2bc6b52826966519852d0588066) center top no-repeat;
+}
+
+#hero-no-slider h2 {
+  font-size: 4.5rem;
+}
+#hero-no-slider h2 em {
+  font-family: "Work Sans", sans-serif;
+}
+
+#header .navbar ul {
+  text-transform: uppercase;
+}
+#header .navbar a {
+  padding: 10px 0 10px 20px;
+}
+#header .navbar a :focus {
+  padding: 10px 0 10px 20px;
+}
+
+#footer .footer-top .footer-links ul {
+  text-transform: uppercase;
+}
+
+.services .title {
+  font-size: 1.6rem;
+}
+.services .title a {
+  font-size: 1.6rem;
+}
+.services .title a :focus {
+  font-size: 1.6rem;
+}
+
+.type-writing {
+  font-family: "Cutive", serif;
+  font-family: "Special Elite", cursive;
+}
