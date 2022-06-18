@@ -4,7 +4,7 @@
             <form class="form" method="post" @submit.prevent>
                 <div class="row">
 
-                    <div class="col-6">
+                    <div class="col-12">
                         <validation-provider name="title" rules="required|min:3|max:191" v-slot="{ dirty, valid, invalid, errors }">
                             <div class="form-group has-icon-left">
                                 <label for="title">Title</label>
@@ -19,9 +19,30 @@
                         </validation-provider>
                     </div>
 
-                    <div class="col-6">
-                        <validation-provider name="url" rules="min:3" v-slot="{ dirty, valid, invalid, errors }">
-                            <input type="file" id="url" name="url" hidden accept="application/pdf" /> <!--implement customization.-->
+                    <div class="col-md-6 col-12">
+                        <validation-provider name="url" rules="required|min:1|max:2000" v-slot="{ dirty, valid, invalid, errors }">
+                            <div class="form-group has-icon-left">
+                                <label for="root_url">URL</label>
+                                <div class="position-relative">
+                                    <input type="url" class="form-control form-control-xl" v-model="resource.url" name="url" placeholder="URL" id="url">
+                                    <div class="form-control-icon">
+                                        <i class="bi bi-type-h2"></i>
+                                    </div>
+                                </div>
+                                <div class="form-control-feedback" :style="fieldErrorPlaceholder">{{ errors[0] }}</div>
+                            </div>
+                        </validation-provider>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                        <validation-provider name="open_in_new_tab" rules="" v-slot="{ dirty, valid, invalid, errors }">
+                            <div class="form-check">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="open_in_new_tab" class="form-check-input" v-model="resource.open_in_new_tab" name="open_in_new_tab">
+                                    <label for="primary_contact">Should open in new tab?</label>
+                                </div>
+                            </div>
+                            <div class="form-control-feedback" :style="fieldErrorPlaceholder">{{ errors[0] }}</div>
                         </validation-provider>
                     </div>
 

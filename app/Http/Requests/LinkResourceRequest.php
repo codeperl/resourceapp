@@ -28,7 +28,7 @@ class LinkResourceRequest extends FormRequest
             'resource_type_id' => ['required', 'exists:App\Models\ResourceType,id'],
             'title' => ['required', 'min:3', 'max:191', 'unique:App\Models\Resource,title'],
             'url' => ['required', 'min:10', 'url'],
-            'open_in_new_tab' => ['nullable'],
+            'open_in_new_tab' => ['nullable', 'boolean'],
         ];
 
         if ($this->isMethod(Request::METHOD_PUT) || $this->isMethod(Request::METHOD_PATCH) ) {
