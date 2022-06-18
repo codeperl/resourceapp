@@ -23,7 +23,10 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="resource_type_id">Resource Type</label>
-                                        <v-select v-model="resource_type"
+                                        <div v-if="resource.id">
+                                            <div class="form-control form-control-xl">{{ resource.resource_type.text }}</div>
+                                        </div>
+                                        <v-select v-else v-model="resource_type"
                                                   :options="resource_types"
                                                   name="resource_type_id" id="resource_type_id"
                                                   label="text"
@@ -35,7 +38,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <component :is="currentResourceForm" v-bind:resource_type="resource_type"></component>
+                            <component :is="currentResourceForm" v-bind:resource_type="resource_type"
+                                       v-bind:passed_resource="resource"
+                                       :key="resource_type.text+resource_type.value+'resource'+resource.id"></component>
                         </div>
                     </div>
                 </div>

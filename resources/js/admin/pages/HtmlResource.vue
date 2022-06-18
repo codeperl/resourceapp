@@ -54,6 +54,16 @@
     export default {
         name: 'HtmlResource',
         props: {
+            passed_resource: {
+                type: Object,
+                default: () => ({
+                    resource_type_id: null,
+                    title: '',
+                    description: '',
+                    code_snippet: '',
+                    id: null
+                })
+            },
             resource_type: {
                 type: Object,
                 default: () => ({
@@ -64,13 +74,7 @@
         },
         data() {
             return {
-                resource: {
-                    resource_type_id: null,
-                    title: '',
-                    description: '',
-                    code_snippet: '',
-                    id: null
-                },
+                resource:  JSON.parse(JSON.stringify(this.passed_resource)),
                 resourceType: JSON.parse(JSON.stringify(this.resource_type)),
                 /** Helpers **/
                 serverResp: {},
@@ -81,9 +85,7 @@
             this.initAll();
         },
         methods: {
-            initAll() {
-                this.initResource();
-            },
+            initAll() {},
 
             initResource() {
                 this.$nextTick(() => {

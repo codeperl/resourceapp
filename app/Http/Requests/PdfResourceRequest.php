@@ -32,7 +32,7 @@ class PdfResourceRequest extends FormRequest
 
         if ($this->isMethod(Request::METHOD_PUT) || $this->isMethod(Request::METHOD_PATCH) ) {
             $rules = array_merge($rules, [
-                'title' => ['required', 'min:3', 'max:191', 'unique:App\Models\Resource,title'.$this->resource->id],
+                'title' => ['required', 'min:3', 'max:191', 'unique:App\Models\Resource,title,'.$this->pdf_resource->id],
                 'url' => ['nullable', 'mimes:pdf', 'max:2048'],
             ]);
         }
