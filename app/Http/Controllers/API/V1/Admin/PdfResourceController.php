@@ -25,9 +25,9 @@ class PdfResourceController extends Controller
             $request->file('url'), 'Pdf Resource created!');
     }
 
-    public function update(PdfResourceRequest $request, Resource $resource)
+    public function update(PdfResourceRequest $request, Resource $pdf_resource)
     {
-        return $this->pdfResourceService->updatedResource($resource, $request->validated(),
+        return $this->pdfResourceService->updatedResource($pdf_resource, $request->validated(),
             ResourceResource::class, 'Pdf Resource updated!');
     }
 }

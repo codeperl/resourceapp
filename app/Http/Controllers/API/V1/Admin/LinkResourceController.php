@@ -26,9 +26,9 @@ class LinkResourceController extends Controller
             ResourceResource::class, 'Link Resource created!');
     }
 
-    public function update(LinkResourceRequest $request, Resource $resource)
+    public function update(LinkResourceRequest $request, Resource $link_resource)
     {
-        return $this->linkResourceService->updatedResource(ResourceRepository::class, $resource, $request->validated(),
+        return $this->linkResourceService->updatedResource(ResourceRepository::class, $link_resource, $request->validated(),
             ResourceResource::class, 'Link Resource updated!');
     }
 }

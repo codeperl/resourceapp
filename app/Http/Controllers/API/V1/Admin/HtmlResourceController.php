@@ -26,9 +26,9 @@ class HtmlResourceController extends Controller
             ResourceResource::class, 'HTML Resource created!');
     }
 
-    public function update(HtmlResourceRequest $request, Resource $resource)
+    public function update(HtmlResourceRequest $request, Resource $html_resource)
     {
-        return $this->htmlResourceService->updatedResource(ResourceRepository::class, $resource,
+        return $this->htmlResourceService->updatedResource(ResourceRepository::class, $html_resource,
             $request->validated(), ResourceResource::class, 'HTML Resource updated!');
     }
 }
