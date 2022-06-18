@@ -5,7 +5,7 @@
                 <div class="row">
 
                     <div class="col-6">
-                        <validation-provider name="title" rules="required|min:3|max:150" v-slot="{ dirty, valid, invalid, errors }">
+                        <validation-provider name="title" rules="required|min:3|max:191" v-slot="{ dirty, valid, invalid, errors }">
                             <div class="form-group has-icon-left">
                                 <label for="title">Title</label>
                                 <div class="position-relative">

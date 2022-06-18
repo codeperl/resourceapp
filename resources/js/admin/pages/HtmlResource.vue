@@ -4,8 +4,8 @@
             <form class="form" method="post" @submit.prevent>
                 <div class="row">
 
-                    <div class="col-6">
-                        <validation-provider name="title" rules="required|min:3|max:150" v-slot="{ dirty, valid, invalid, errors }">
+                    <div class="col-12">
+                        <validation-provider name="title" rules="required|min:3|max:191" v-slot="{ dirty, valid, invalid, errors }">
                             <div class="form-group has-icon-left">
                                 <label for="title">Title</label>
                                 <div class="position-relative">
@@ -14,6 +14,26 @@
                                         <i class="bi bi-building"></i>
                                     </div>
                                 </div>
+                                <div class="form-control-feedback" :style="fieldErrorPlaceholder">{{ errors[0] }}</div>
+                            </div>
+                        </validation-provider>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                        <validation-provider name="description" rules="min:2|max:10000" v-slot="{ dirty, valid, invalid, errors }">
+                            <div class="form-group">
+                                <label for="company_summary">Snippet Description</label>
+                                <textarea class="form-control form-control-xl" v-model="resource.description" name="description" id="description" rows="3"></textarea>
+                                <div class="form-control-feedback" :style="fieldErrorPlaceholder">{{ errors[0] }}</div>
+                            </div>
+                        </validation-provider>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                        <validation-provider name="code_snippet" rules="min:2|max:10000" v-slot="{ dirty, valid, invalid, errors }">
+                            <div class="form-group">
+                                <label for="code_snippet">HTML snippet</label>
+                                <textarea class="form-control form-control-xl" v-model="resource.code_snippet" name="code_snippet" id="code_snippet" rows="10"></textarea>
                                 <div class="form-control-feedback" :style="fieldErrorPlaceholder">{{ errors[0] }}</div>
                             </div>
                         </validation-provider>

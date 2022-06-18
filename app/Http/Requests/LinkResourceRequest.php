@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class LinkResourceRequest extends FormRequest
 {
@@ -23,11 +24,19 @@ class LinkResourceRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'resource_type_id' => [],
-            'title' => [],
-            'url' => [],
-            'open_in_new_tab' => [],
+        $rules = [
+            'resource_type_id' => ['required', 'exists:App\Models\ResourceType,id'],
+            'title' => ['required', 'min:3', 'max:191', 'unique:App\Models\Resource,title'],
+            'url' => ['required', 'min:10', 'url'],
+            'open_in_new_tab' => ['nullable'],
         ];
+
+        if ($this->isMethod(Request::METHOD_PUT) || $this->isMethod(Request::METHOD_PATCH) ) {
+            $rules = array_merge($rules, [
+                'title' => ['required', 'min:3', 'max:191', 'unique:App\Models\Resource,title'.$this->resource->id],
+            ]);
+        }
+
+        return $rules;
     }
 }
