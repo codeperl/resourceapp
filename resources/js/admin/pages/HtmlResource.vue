@@ -39,12 +39,6 @@
                         </validation-provider>
                     </div>
 
-                    <div class="col-6">
-                        <validation-provider name="url" rules="min:3" v-slot="{ dirty, valid, invalid, errors }">
-                            <input type="file" id="url" name="url" hidden accept="application/pdf" /> <!--implement customization.-->
-                        </validation-provider>
-                    </div>
-
                     <div class="col-12 d-flex justify-content-end">
                         <button type="button" class="btn btn-primary my-1 btn-lg" @click.prevent="handleSubmit(save)">Submit</button>
                     </div>
