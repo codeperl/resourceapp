@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API\V1\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ResourceRequest;
 use App\Http\Resources\ResourceResource;
 use App\Models\Resource;
 use App\Repositories\ResourceRepository;
@@ -22,7 +21,6 @@ class ResourceController extends Controller
         $this->resourceService = $resourceService;
     }
 
-
     public function index(Request $request)
     {
         $length = $request->input('length');
@@ -40,18 +38,6 @@ class ResourceController extends Controller
     {
         return $this->resourceService->detailResource($resource, ResourceResource::class,
             'Resource showed!');
-    }
-
-    public function store(ResourceRequest $request)
-    {
-        return $this->resourceService->createdResource(ResourceRepository::class, $request->validated(),
-            ResourceResource::class, 'Resource created!');
-    }
-
-    public function update(ResourceRequest $request, Resource $resource)
-    {
-        return $this->resourceService->updatedResource(ResourceRepository::class, $resource, $request->validated(),
-            ResourceResource::class, 'Resource updated!');
     }
 
     public function destroy(Resource $resource)

@@ -18,7 +18,7 @@ use App\Services\Contracts\InitiableContract;
 use App\Services\Contracts\MessagableContract;
 use App\Services\Contracts\Updatable;
 
-class ResourceTypeService implements InitiableContract, Contracts\ResourceTypeContract, DatatableContract, MessagableContract,
+class ResourceTypeService implements Contracts\ResourceTypeContract, InitiableContract, DatatableContract, MessagableContract,
     Creatable, Detailable, Updatable, Deletable
 {
     use InitiateKlass, Messages, Datatable, Create, Detail, Update, Delete;

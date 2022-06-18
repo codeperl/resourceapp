@@ -24,6 +24,21 @@
                                     <div class="row">
 
                                         <div class="col-12">
+                                            <validation-provider name="title" rules="required|min:3|max:150" v-slot="{ dirty, valid, invalid, errors }">
+                                                <div class="form-group has-icon-left">
+                                                    <label for="title">Title</label>
+                                                    <div class="position-relative">
+                                                        <input type="text" class="form-control form-control-xl" v-model="resource.title" name="title" placeholder="Title" id="title" />
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-building"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-control-feedback" :style="fieldErrorPlaceholder">{{ errors[0] }}</div>
+                                                </div>
+                                            </validation-provider>
+                                        </div>
+
+                                        <div class="col-12">
                                             <validation-provider name="resource_type_id" rules="required" v-slot="{ dirty, valid, invalid, errors }">
                                                 <div class="form-group">
                                                     <label for="resource_type_id">Resource Type</label>
@@ -41,7 +56,18 @@
                                             </validation-provider>
                                         </div>
 
-                                        <component :is="currentResourceForm"></component>
+                                        <div v-if="isPdfResource()">
+                                            <validation-provider name="url" rules="min:3" v-slot="{ dirty, valid, invalid, errors }">
+                                                <!--default html file upload button-->
+                                                <input type="file" id="url" name="url" hidden @change="getFile" accept="image/*" />
+                                            </validation-provider>
+                                        </div>
+                                        <div v-else-if="isHtmlResource()">
+                                            Html resource
+                                        </div>
+                                        <div v-else-if="isLinkResource()">
+                                            Link
+                                        </div>
 
                                         <div class="col-12 d-flex justify-content-end">
                                             <button type="button" class="btn btn-primary my-1 btn-lg" @click.prevent="handleSubmit(save)">Submit</button>
@@ -76,9 +102,6 @@
 
 <script>
     import vSelect from 'vue-select';
-    import PdfResource from "../components/pdf_resource/PdfResource";
-    import HtmlResource from "../components/html_resource/HtmlResource";
-    import LinkResource from "../components/link_resource/LinkResource";
     import CommonRepository from '../repositories/CommonRepository';
     import ActionButtonGroup from '../components/laravel_vue_datatable/actions/ActionButtonGroup';
     import { EDIT, DELETE } from '../repositories/ActionButtonsRepository';
@@ -89,9 +112,6 @@
         name: 'Resource',
         components: {
             'vSelect': vSelect,
-            'PdfResource': PdfResource,
-            'HtmlResource': HtmlResource,
-            'LinkResource': LinkResource,
         },
         data() {
             return {
@@ -189,7 +209,6 @@
                     open_in_new_tab: false,
                     id: null
                 },
-                currentResourceForm: '',
                 /** Helpers **/
                 serverResp: {},
                 fieldErrorPlaceholder: {color: 'red'},
@@ -201,6 +220,43 @@
             this.initAll();
         },
         methods: {
+            isPdfResource() {
+                return this.resource_type.text === PDF;
+            },
+
+            isHtmlResource() {
+                return this.resource_type.text === HTML;
+            },
+
+            isLinkResource() {
+                return this.resource_type.text === LINK;
+            },
+
+            getFile(event) {
+                let that = this;
+                let input = event.target;
+
+                let readerBuffer = new FileReader();
+                let readerDataURL = new FileReader();
+
+                if (input.files && input.files[0]) {
+                    this.path = input.files[0];
+                    readerDataURL.readAsDataURL(input.files[0]);
+
+                    readerDataURL.onload = (e) => {
+                        that.content = readerDataURL.result;
+                    };
+
+                    readerBuffer.onloadend = (e) => {
+                        const bytes = new Uint8Array(e.target.result);
+                        that.extension = filetypeextension(bytes).pop();
+                        that.mimeType = filetypemime(bytes).pop();
+                    };
+
+                    readerBuffer.readAsArrayBuffer(input.files[0]);
+                }
+            },
+
             reloadDatatable() {
                 this.$refs.tableResources.getData();
             },
@@ -311,28 +367,14 @@
                     console.log(err);
                 });
             },
-
-            decideResourceComponent(val) {
-                if(CommonRepository.resourceTypes().includes(val.text)) {
-                    if(val.text === PDF) {
-                        this.currentResourceForm = 'PdfResource';
-                    } else if(val.text === HTML) {
-                        this.currentResourceForm = 'HtmlResource';
-                    } else if(val.text === LINK) {
-                        this.currentResourceForm = 'LinkResource';
-                    }
-                }
-            }
         },
 
         watch: {
             resource_type : function(val, oldVal) {
                 if(val !== null) {
                     this.resource.resource_type_id = val.id;
-                    this.decideResourceComponent(val);
                 } else {
                     this.resource.resource_type_id = '';
-                    this.currentResourceForm = '';
                 }
             },
         }
