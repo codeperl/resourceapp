@@ -14,4 +14,14 @@ class ResourceRepository extends Repository
     {
         parent::__construct($resource);
     }
+
+    public function fileNameExists(string $fileName)
+    {
+        return $this->getModel()->where('url', $fileName)->exists();
+    }
+
+    public function fileNameNotExists(string $fileName)
+    {
+        return $this->getModel()->where('url', $fileName)->doesntExist();
+    }
 }

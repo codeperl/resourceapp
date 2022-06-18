@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class PdfResourceRequest extends FormRequest
 {
@@ -23,10 +24,19 @@ class PdfResourceRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'resource_type_id' => [],
-            'title' => [],
-            'url' => [],
+        $rules = [
+            'resource_type_id' => ['required', 'exists:App\Models\ResourceType,id'],
+            'title' => ['required', 'min:3', 'max:191', 'unique:App\Models\Resource,title'],
+            'url' => ['required', 'file:pdf', 'max:2048'],
         ];
+
+
+        if ($this->isMethod(Request::METHOD_PUT) || $this->isMethod(Request::METHOD_PATCH) ) {
+            $rules = array_merge($rules, [
+                'title' => ['required', 'min:3', 'max:191', 'unique:App\Models\Resource,title'.$this->resource->id],
+            ]);
+        }
+
+        return $rules;
     }
 }

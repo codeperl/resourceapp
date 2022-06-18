@@ -61,4 +61,100 @@ export default {
                 });
         });
     },
+
+    resourceShow({commit}, params) {
+        return new Promise((resolve, reject) => {
+            axiosCaller.callApi(GET, `/admin/resources/${params.id}`)
+                .then(resp => {
+                    resolve(resp);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    },
+
+    resourceDestroy({commit}, params) {
+        return new Promise((resolve, reject) => {
+            axiosCaller.callApi(DELETE, `/admin/resources/${params.id}`)
+                .then(resp => {
+                    resolve(resp);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    },
+
+    pdfResourceStore({commit}, params) {
+        return new Promise((resolve, reject) => {
+            axiosCaller.callApi(POST, '/admin/pdf-resources', params)
+                .then(resp => {
+                    resolve(resp);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    },
+
+    pdfResourceUpdate({commit}, params) {
+        return new Promise((resolve, reject) => {
+            axiosCaller.callApi(PATCH, `/admin/pdf-resources/${params.id}`, params)
+                .then(resp => {
+                    resolve(resp);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    },
+
+    htmlResourceStore({commit}, params) {
+        return new Promise((resolve, reject) => {
+            axiosCaller.callApi(POST, '/admin/html-resources', params)
+                .then(resp => {
+                    resolve(resp);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    },
+
+    htmlResourceUpdate({commit}, params) {
+        return new Promise((resolve, reject) => {
+            axiosCaller.callApi(PATCH, `/admin/html-resources/${params.id}`, params)
+                .then(resp => {
+                    resolve(resp);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    },
+
+    linkResourceStore({commit}, params) {
+        return new Promise((resolve, reject) => {
+            axiosCaller.callApi(POST, '/admin/link-resources', params)
+                .then(resp => {
+                    resolve(resp);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    },
+
+    linkResourceUpdate({commit}, params) {
+        return new Promise((resolve, reject) => {
+            axiosCaller.callApi(PATCH, `/admin/link-resources/${params.id}`, params)
+                .then(resp => {
+                    resolve(resp);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    },
 }

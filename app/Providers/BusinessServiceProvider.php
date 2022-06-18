@@ -6,8 +6,10 @@ use App\Http\Controllers\API\V1\Admin\HtmlResourceController;
 use App\Http\Controllers\API\V1\Admin\LinkResourceController;
 use App\Http\Controllers\API\V1\Admin\PdfResourceController;
 use App\Http\Controllers\API\V1\Admin\ResourceController;
+use App\Services\Contracts\FileUploaderContract;
 use App\Services\Contracts\ResourceContract;
 use App\Services\Contracts\ResourceTypeContract;
+use App\Services\FileUploaderService;
 use App\Services\HtmlResourceService;
 use App\Services\LinkResourceService;
 use App\Services\PdfResourceService;
@@ -35,7 +37,7 @@ class BusinessServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->singleton(ResourceTypeContract::class, ResourceTypeService::class);
-
+        $this->app->singleton(FileUploaderContract::class, FileUploaderService::class);
         $this->app
             ->when(ResourceController::class)
             ->needs(ResourceContract::class)

@@ -19,62 +19,23 @@
                             <h3 class="card-title">Resources</h3>
                         </div>
                         <div class="card-body">
-                            <validation-observer ref="form" v-slot="{ handleSubmit }">
-                                <form class="form" method="post" @submit.prevent>
-                                    <div class="row">
-
-                                        <div class="col-12">
-                                            <validation-provider name="title" rules="required|min:3|max:150" v-slot="{ dirty, valid, invalid, errors }">
-                                                <div class="form-group has-icon-left">
-                                                    <label for="title">Title</label>
-                                                    <div class="position-relative">
-                                                        <input type="text" class="form-control form-control-xl" v-model="resource.title" name="title" placeholder="Title" id="title" />
-                                                        <div class="form-control-icon">
-                                                            <i class="bi bi-building"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-control-feedback" :style="fieldErrorPlaceholder">{{ errors[0] }}</div>
-                                                </div>
-                                            </validation-provider>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <validation-provider name="resource_type_id" rules="required" v-slot="{ dirty, valid, invalid, errors }">
-                                                <div class="form-group">
-                                                    <label for="resource_type_id">Resource Type</label>
-                                                    <v-select v-model="resource_type"
-                                                              :options="resource_types"
-                                                              name="resource_type_id" id="resource_type_id"
-                                                              label="text"
-                                                              class="form-control form-control-xl" :clearable="false" :default="'Select Resource Type'">
-                                                        <template #search="{attributes, events}">
-                                                            <input class="vs__search" v-bind="attributes" v-on="events"/>
-                                                        </template>
-                                                    </v-select>
-                                                    <div class="form-control-feedback" :style="fieldErrorPlaceholder">{{ errors[0] }}</div>
-                                                </div>
-                                            </validation-provider>
-                                        </div>
-
-                                        <div v-if="isPdfResource()">
-                                            <validation-provider name="url" rules="min:3" v-slot="{ dirty, valid, invalid, errors }">
-                                                <!--default html file upload button-->
-                                                <input type="file" id="url" name="url" hidden @change="getFile" accept="image/*" />
-                                            </validation-provider>
-                                        </div>
-                                        <div v-else-if="isHtmlResource()">
-                                            Html resource
-                                        </div>
-                                        <div v-else-if="isLinkResource()">
-                                            Link
-                                        </div>
-
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <button type="button" class="btn btn-primary my-1 btn-lg" @click.prevent="handleSubmit(save)">Submit</button>
-                                        </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="resource_type_id">Resource Type</label>
+                                        <v-select v-model="resource_type"
+                                                  :options="resource_types"
+                                                  name="resource_type_id" id="resource_type_id"
+                                                  label="text"
+                                                  class="form-control form-control-xl" :clearable="false" :default="'Select Resource Type'">
+                                            <template #search="{attributes, events}">
+                                                <input class="vs__search" v-bind="attributes" v-on="events"/>
+                                            </template>
+                                        </v-select>
                                     </div>
-                                </form>
-                            </validation-observer>
+                                </div>
+                            </div>
+                            <component :is="currentResourceForm" v-bind:resource_type="resource_type"></component>
                         </div>
                     </div>
                 </div>
@@ -106,13 +67,20 @@
     import ActionButtonGroup from '../components/laravel_vue_datatable/actions/ActionButtonGroup';
     import { EDIT, DELETE } from '../repositories/ActionButtonsRepository';
     import { API_BASE_PATH, PDF, HTML, LINK } from "../repositories/ConstRepository";
+    import PdfResource from './PdfResource';
+    import HtmlResource from './HtmlResource';
+    import LinkResource from './LinkResource';
     import "vue-select/dist/vue-select.css";
 
     export default {
         name: 'Resource',
         components: {
             'vSelect': vSelect,
+            'PdfResource': PdfResource,
+            'HtmlResource': HtmlResource,
+            'LinkResource': LinkResource,
         },
+
         data() {
             return {
                 table: {
@@ -123,24 +91,15 @@
                             orderable: true
                         },
                         {
-                            label: 'Person Name',
-                            name: 'person_name',
-                            orderable: true,
-                        },
-                        {
-                            label: 'Designation',
-                            name: 'designation',
-                            orderable: true,
-                        },
-                        {
-                            label: 'Order',
-                            name: 'order',
-                            orderable: true,
-                        },
-                        {
-                            label: 'Primary Resource?',
-                            name: 'primary_resource',
+                            label: 'Resource Type',
+                            name: 'resource_type.name',
+                            searchable: true,
                             orderable: false,
+                        },
+                        {
+                            label: 'Title',
+                            name: 'title',
+                            orderable: true,
                         },
                         {
                             label: 'Actions',
@@ -209,54 +168,15 @@
                     open_in_new_tab: false,
                     id: null
                 },
+                currentResourceForm: '',
                 /** Helpers **/
                 serverResp: {},
-                fieldErrorPlaceholder: {color: 'red'},
-                keepDisable: false,
-                disabled: false,
             }
         },
         mounted() {
             this.initAll();
         },
         methods: {
-            isPdfResource() {
-                return this.resource_type.text === PDF;
-            },
-
-            isHtmlResource() {
-                return this.resource_type.text === HTML;
-            },
-
-            isLinkResource() {
-                return this.resource_type.text === LINK;
-            },
-
-            getFile(event) {
-                let that = this;
-                let input = event.target;
-
-                let readerBuffer = new FileReader();
-                let readerDataURL = new FileReader();
-
-                if (input.files && input.files[0]) {
-                    this.path = input.files[0];
-                    readerDataURL.readAsDataURL(input.files[0]);
-
-                    readerDataURL.onload = (e) => {
-                        that.content = readerDataURL.result;
-                    };
-
-                    readerBuffer.onloadend = (e) => {
-                        const bytes = new Uint8Array(e.target.result);
-                        that.extension = filetypeextension(bytes).pop();
-                        that.mimeType = filetypemime(bytes).pop();
-                    };
-
-                    readerBuffer.readAsArrayBuffer(input.files[0]);
-                }
-            },
-
             reloadDatatable() {
                 this.$refs.tableResources.getData();
             },
@@ -316,48 +236,11 @@
                         id: null
                     };
                     this.resource_type = {'text':'Select Resource Type', 'value':''};
-                    this.$refs.form.reset();
                 });
             },
 
             isEmptyServerResp() {
                 return CommonRepository.isEmptyObject(this.serverResp);
-            },
-
-            getFileUrl(fileUrl, elem) {
-                this.setByField(fileUrl, elem);
-            },
-
-            setByField(fileUrl, elem) {
-                if(elem==='photo') {
-                    this.$set(this.resource, 'photo', fileUrl);
-                }
-            },
-
-            save() {
-                let params = this.resource;
-
-                if(params.id===null) {
-                    this.$store.dispatch('resourceStore', params).then( (resp)=> {
-                        console.log('resourceStore request success!');
-                        this.serverResp = resp.data;
-                        this.reloadDatatable();
-                        this.initResource();
-                    }).catch(err => {
-                        this.serverResp = err.response.data;
-                        this.$refs.form.setErrors(err.response.data.errors);
-                    });
-                } else {
-                    this.$store.dispatch('resourceUpdate', params).then( (resp)=> {
-                        console.log('resourceUpdate request success!');
-                        this.serverResp = resp.data;
-                        this.reloadDatatable();
-                        this.initResource();
-                    }).catch(err => {
-                        this.serverResp = err.response.data;
-                        this.$refs.form.setErrors(err.response.data.errors);
-                    });
-                }
             },
 
             searchResourceTypes() {
@@ -367,14 +250,30 @@
                     console.log(err);
                 });
             },
+
+            decideResourceComponent(val) {
+                if(CommonRepository.resourceTypes().includes(val.text)) {
+                    if(val.text === PDF) {
+                        this.currentResourceForm = 'PdfResource';
+                    } else if(val.text === HTML) {
+                        this.currentResourceForm = 'HtmlResource';
+                    } else if(val.text === LINK) {
+                        this.currentResourceForm = 'LinkResource';
+                    } else {
+                        this.currentResourceForm = '';
+                    }
+                }
+            }
         },
 
         watch: {
             resource_type : function(val, oldVal) {
                 if(val !== null) {
                     this.resource.resource_type_id = val.id;
+                    this.decideResourceComponent(val);
                 } else {
                     this.resource.resource_type_id = '';
+                    this.currentResourceForm = '';
                 }
             },
         }
