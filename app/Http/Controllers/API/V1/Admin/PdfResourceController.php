@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\V1\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PdfResourceRequest;
+use App\Http\Requests\PdfResourceUpdateRequest;
 use App\Http\Resources\ResourceResource;
 use App\Models\Resource;
 use App\Services\Contracts\ResourceContract;
@@ -25,9 +26,9 @@ class PdfResourceController extends Controller
             $request->file('url'), 'Pdf Resource created!');
     }
 
-    public function update(PdfResourceRequest $request, Resource $pdf_resource)
+    public function update(PdfResourceUpdateRequest $request, Resource $pdf_resource)
     {
         return $this->pdfResourceService->updatedResource($pdf_resource, $request->validated(),
-            ResourceResource::class, 'Pdf Resource updated!');
+            ResourceResource::class, $request->file('url'), 'Pdf Resource updated!');
     }
 }

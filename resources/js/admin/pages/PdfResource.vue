@@ -68,6 +68,7 @@
             return {
                 resource:  JSON.parse(JSON.stringify(this.passed_resource)),
                 resourceType: JSON.parse(JSON.stringify(this.resource_type)),
+                pdfFile: '',
                 /** Helpers **/
                 serverResp: {},
                 fieldErrorPlaceholder: {color: 'red'},
@@ -83,7 +84,7 @@
                 let input = event.target;
 
                 if (input.files && input.files[0]) {
-                    this.resource.url = input.files[0];
+                    this.pdfFile = input.files[0];
                 }
             },
 
@@ -98,6 +99,8 @@
                         id: null
                     };
 
+                    this.pdfFile = '';
+
                     this.$refs.form.reset();
                 });
             },
@@ -109,9 +112,9 @@
             save() {
                 this.resource.resource_type_id = this.resourceType.value;
                 let params = objectToFormData(this.resource);
-                params.append('url', this.resource.url);
+                params.append('url', this.pdfFile);
 
-                if(CommonRepository.validParamId(params)) {
+                if(CommonRepository.validParamId(this.resource)) {
                     this.create(params);
                 } else {
                     this.update(params);

@@ -1,5 +1,6 @@
 import axiosCaller from "../repositories/AxiosRepository";
 import { GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS } from '../repositories/HttpCommandsRepository';
+import { MULTIPART_FORM_DATA_HEADER } from "../repositories/HttpHeadersRepository";
 
 export default {
     resourceTypeStore({commit}, params) {
@@ -88,7 +89,7 @@ export default {
 
     pdfResourceStore({commit}, params) {
         return new Promise((resolve, reject) => {
-            axiosCaller.callApi(POST, '/admin/pdf-resources', params)
+            axiosCaller.callApi(POST, '/admin/pdf-resources', params, { headers:MULTIPART_FORM_DATA_HEADER})
                 .then(resp => {
                     resolve(resp);
                 })
@@ -100,7 +101,8 @@ export default {
 
     pdfResourceUpdate({commit}, params) {
         return new Promise((resolve, reject) => {
-            axiosCaller.callApi(PATCH, `/admin/pdf-resources/${params.id}`, params)
+            // Get id from FormData object named params.
+            axiosCaller.callApi(POST, `/admin/pdf-resources/${params.get('id')}`, params, { headers:MULTIPART_FORM_DATA_HEADER})
                 .then(resp => {
                     resolve(resp);
                 })

@@ -10,6 +10,8 @@ use App\Services\Contracts\InitiableContract;
 use App\Services\Contracts\MessagableContract;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use App\Enums\Storage as StorageDisks;
 
 class PdfResourceService implements Contracts\ResourceContract, InitiableContract, MessagableContract
 {
@@ -46,6 +48,51 @@ class PdfResourceService implements Contracts\ResourceContract, InitiableContrac
             return (new $resourceKlass($object))
                 ->additional($this->success($message));
         } catch(\Exception $e) {
+            DB::rollBack();
+
+            return (new $resourceKlass(null))
+                ->additional($this->failed(
+                    $e->getMessage()
+                ));
+        }
+    }
+
+    public function updatedResource($entity, array $values, $resourceKlass, ?UploadedFile $file, $message='')
+    {
+        if(empty($values['url'])) {
+            unset($values['url']);
+        }
+
+        DB::beginTransaction();
+        try {
+            $anotherFileSelected = !empty($file);
+            $oldFileName = $entity->url;
+
+            if ($anotherFileSelected) {
+                $newPhotoMeta = $this->fileUploaderService->uploadFile($this->resourceRepository, $file);
+
+                if (!$newPhotoMeta['fileName'] || !$newPhotoMeta['extension'] || !$newPhotoMeta['mime_type']) {
+                    throw new \Exception('File name or extension is missing! Operation reverted!');
+                }
+
+                $values['url'] = $newPhotoMeta['fileName'];
+            }
+
+            $this->resourceRepository->update($entity, $values);
+
+            if($anotherFileSelected && $oldFileName) {
+                Storage::disk(StorageDisks::ADMIN_UPLOADED_STORAGE)->delete($oldFileName);
+            }
+
+            DB::commit();
+
+            return (new $resourceKlass($entity->refresh()))
+                ->additional($this->success($message));
+        } catch(\Exception $e) {
+            if ($anotherFileSelected && !empty($values['url'])) {
+                Storage::disk(StorageDisks::ADMIN_UPLOADED_STORAGE)->delete($values['url']);
+            }
+
             DB::rollBack();
 
             return (new $resourceKlass(null))
