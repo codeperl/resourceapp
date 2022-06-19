@@ -4,11 +4,6 @@ try {
     // https://github.com/jquery/jquery
     // npm install --save jquery
     window.$ = window.jQuery = require('jquery');
-    window.Swiper = require('swiper/swiper-bundle');
-    window.GLightbox = require('glightbox');
-    window.Isotope = require('isotope-layout/dist/isotope.pkgd.min');
-    window.AOS = require('aos');
-    window.PureCounter = require('@srexi/purecounterjs');
 } catch (e) {
     console.log(e);
 }

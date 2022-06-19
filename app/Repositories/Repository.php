@@ -143,4 +143,9 @@ class Repository
 
         return ($result instanceof Model) ? $result : $this->model->find($result->id);
     }
+
+    public function paginate($itemPerPage)
+    {
+        return $this->model->paginate($itemPerPage);
+    }
 }

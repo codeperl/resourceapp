@@ -7,7 +7,6 @@ import en from 'vee-validate/dist/locale/en.json';
 import * as rules from 'vee-validate/dist/rules';
 import Loading from 'vue-loading-overlay';
 import Notifications from 'vue-notification';
-import FileManager from "laravel-file-manager";
 import DataTable from 'laravel-vue-datatable';
 import axios from 'axios';
 import routes from './routers';
@@ -68,9 +67,6 @@ Vue.use(VueRouter);
 
 /** Application routes defined based on action **/
 Vue.prototype.$store = store;
-
-/** File manager configuration for application **/
-Vue.use(FileManager, {store});
 
 /** Route configured with vuex store and applicsaiton routes **/
 let router = new VueRouter({
