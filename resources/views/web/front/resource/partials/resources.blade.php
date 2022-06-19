@@ -9,7 +9,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($resources as $index => $resource)
+                @foreach($resources as $resource)
                     @include('web.front.resource.partials.resource', ['resource' => $resource])
                 @endforeach
             </tbody>
