@@ -2,6 +2,7 @@ import store from "../stores";
 import _ from 'lodash';
 import Swal from 'sweetalert2';
 import { PDF, HTML, LINK } from './ConstRepository';
+const STORAGE_RELATIVE_URL = 'storage/';
 
 export default {
     isEmptyObject(obj) {
@@ -141,5 +142,9 @@ export default {
         return [
             PDF, HTML, LINK
         ];
+    },
+
+    getStorageUrl() {
+        return STORAGE_RELATIVE_URL;
     }
 }

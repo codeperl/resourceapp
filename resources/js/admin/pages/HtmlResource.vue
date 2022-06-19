@@ -141,6 +141,7 @@
                     this.initResource();
                     this.resourceType = {'text':'Select Resource Type', 'value':''};
                     this.$emit('resetResp', resp);
+                    this.$router.go();
 
                     return resp;
                 }).catch(err => {

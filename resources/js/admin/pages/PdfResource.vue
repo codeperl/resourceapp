@@ -22,7 +22,7 @@
                     <div class="col-6">
                         <validation-provider name="url" rules="min:3|ext:pdf" v-slot="{ dirty, valid, invalid, errors }">
                             <div class="form-group has-icon-right">
-                                <label for="url">Upload PDF</label>
+                                <label for="url">Upload PDF <span v-if="resource.url">(Already uploaded: <a :href="getStorageUrl()+resource.url" target="_blank">{{ resource.url }}</a>)</span></label>
                                 <div class="position-relative">
                                     <input type="file" id="url" name="url" @change="getFile" accept="application/pdf" />
                                 </div>
@@ -127,6 +127,7 @@
                     this.serverResp = resp.data;
                     this.initResource();
                     this.resourceType = {'text':'Select Resource Type', 'value':''};
+                    params.append('url', '');
                     this.$emit('resetResp', resp);
 
                     return resp;
@@ -144,7 +145,9 @@
                     this.serverResp = resp.data;
                     this.initResource();
                     this.resourceType = {'text':'Select Resource Type', 'value':''};
+                    params.append('url', '');
                     this.$emit('resetResp', resp);
+                    this.$router.go();
 
                     return resp;
                 }).catch(err => {
@@ -154,6 +157,11 @@
                     this.$refs.form.setErrors(err.response.data.errors);
                     return Promise.reject(err);
                 });
+            },
+
+            getStorageUrl()
+            {
+                return CommonRepository.getStorageUrl();
             },
         },
     }
