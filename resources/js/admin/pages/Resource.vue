@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <component :is="currentResourceForm" v-bind:resource_type="resource_type"
-                                       v-bind:passed_resource="resource"
+                                       v-bind:passed_resource="resource" @resetResp="resetResp" @resetErr="resetErr"
                                        :key="resource_type.text+resource_type.value+'resource'+resource.id"></component>
                         </div>
                     </div>
@@ -182,6 +182,20 @@
             this.initAll();
         },
         methods: {
+            resetResp(resp) {
+                if(resp && resp.data) {
+                    this.serverResp = resp.data;
+                    this.resource_type = {'text':'Select Resource Type', 'value':''};
+                    this.reloadDatatable();
+                }
+            },
+
+            resetErr(err) {
+                if(err && err.response.data) {
+                    this.serverResp = err.response.data;
+                }
+            },
+
             reloadDatatable() {
                 this.$refs.tableResources.getData();
             },

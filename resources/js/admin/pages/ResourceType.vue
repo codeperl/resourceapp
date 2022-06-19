@@ -25,7 +25,7 @@
                                         <div class="col-12">
                                             <validation-provider name="name" rules="required|min:3|max:100" v-slot="{ dirty, valid, invalid, errors }">
                                                 <div class="form-group has-icon-left">
-                                                    <label for="name">Name (Pdf Download, Html Snippet, Link)</label>
+                                                    <label for="name">Exact Name (Pdf Download, Html Snippet, Link)</label>
                                                     <div class="position-relative">
                                                         <input autocomplete="off" type="text" class="form-control form-control-xl" v-model="resourceType.name" name="name" placeholder="Name" id="name" />
                                                         <div class="form-control-icon">

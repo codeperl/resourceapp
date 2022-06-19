@@ -5,7 +5,7 @@
                 <div class="row">
 
                     <div class="col-6">
-                        <validation-provider name="title" rules="required|min:3|max:150" v-slot="{ dirty, valid, invalid, errors }">
+                        <validation-provider name="title" rules="required|min:3|max:191" v-slot="{ dirty, valid, invalid, errors }">
                             <div class="form-group has-icon-left">
                                 <label for="title">Title</label>
                                 <div class="position-relative">
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="col-6">
-                        <validation-provider name="url" rules="min:3" v-slot="{ dirty, valid, invalid, errors }">
+                        <validation-provider name="url" rules="min:3|ext:pdf" v-slot="{ dirty, valid, invalid, errors }">
                             <div class="form-group has-icon-right">
                                 <label for="url">Upload PDF</label>
                                 <div class="position-relative">
@@ -127,10 +127,12 @@
                     this.serverResp = resp.data;
                     this.initResource();
                     this.resourceType = {'text':'Select Resource Type', 'value':''};
+                    this.$emit('resetResp', resp);
 
                     return resp;
                 }).catch(err => {
                     this.serverResp = err.response.data;
+                    this.$emit('resetErr', err);
                     this.$refs.form.setErrors(err.response.data.errors);
                     return Promise.reject(err);
                 });
@@ -142,11 +144,13 @@
                     this.serverResp = resp.data;
                     this.initResource();
                     this.resourceType = {'text':'Select Resource Type', 'value':''};
+                    this.$emit('resetResp', resp);
 
                     return resp;
                 }).catch(err => {
                     console.log(err);
                     this.serverResp = err.response.data;
+                    this.$emit('resetErr', err);
                     this.$refs.form.setErrors(err.response.data.errors);
                     return Promise.reject(err);
                 });

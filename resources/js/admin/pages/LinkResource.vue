@@ -3,7 +3,6 @@
         <validation-observer ref="form" v-slot="{ handleSubmit }">
             <form class="form" method="post" @submit.prevent>
                 <div class="row">
-
                     <div class="col-12">
                         <validation-provider name="title" rules="required|min:3|max:191" v-slot="{ dirty, valid, invalid, errors }">
                             <div class="form-group has-icon-left">
@@ -116,7 +115,6 @@
             save() {
                 this.resource.resource_type_id = this.resourceType.value;
                 let params = this.resource;
-
                 if(CommonRepository.validParamId(params)) {
                     this.create(params);
                 } else {
@@ -130,10 +128,12 @@
                     this.serverResp = resp.data;
                     this.initResource();
                     this.resourceType = {'text':'Select Resource Type', 'value':''};
+                    this.$emit('resetResp', resp);
 
                     return resp;
                 }).catch(err => {
                     this.serverResp = err.response.data;
+                    this.$emit('resetErr', err);
                     this.$refs.form.setErrors(err.response.data.errors);
                     return Promise.reject(err);
                 });
@@ -145,11 +145,13 @@
                     this.serverResp = resp.data;
                     this.initResource();
                     this.resourceType = {'text':'Select Resource Type', 'value':''};
+                    this.$emit('resetResp', resp);
 
                     return resp;
                 }).catch(err => {
                     console.log(err);
                     this.serverResp = err.response.data;
+                    this.$emit('resetErr', err);
                     this.$refs.form.setErrors(err.response.data.errors);
                     return Promise.reject(err);
                 });
