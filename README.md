@@ -37,7 +37,7 @@ No credential required.
 - Vuejs 2 (Vuejs applications are inside resources/js/admin directory.)
 - postgres 14.3
 
-## Patterns I used
+## Explanation
 - Using repository and service layer to build a layered architecture.
 - Thin Model and Controller.
 - Followed SOLID principle.
@@ -59,7 +59,7 @@ the mimetype from route. I check the mimetype and file in resource validation.
 - Keeping forms as simple as possible and less error prone.
 - Overall created a foundation and convention so that an application can grow from MVP to larger.
 
-### Visitor part
+##### Visitor part
 - Paginated Listing page will show all the resources.
 - From detail page visitor should get required functionality.
 - Keeping code as simple as possible.
