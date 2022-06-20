@@ -37,7 +37,7 @@ class ResourceFactory extends Factory
     private function pdf($resourceType)
     {
         $fileName = microtime().'.pdf';
-        $file = UploadedFile::fake()->create($fileName);
+        $file = UploadedFile::fake()->create($fileName, 4, 'application/pdf');
         $file->storePubliclyAs('', $fileName, ['disk' => StorageDisks::ADMIN_UPLOADED_STORAGE]);
 
         return [

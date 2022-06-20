@@ -28,7 +28,7 @@ class PdfResourceUpdateRequest extends FormRequest
             'resource_type_id' => ['required', 'exists:App\Models\ResourceType,id'],
             'title' => ['required', 'min:3', 'max:191', \Illuminate\Validation\Rule::unique('resources')
                 ->ignore($this->pdf_resource->id)],
-            'url' => ['nullable', 'mimes:pdf', 'max:2048'],
+            'url' => ['nullable', 'file', 'mimes:pdf', 'max:2048'],
         ];
 
         return $rules;

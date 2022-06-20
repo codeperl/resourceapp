@@ -4054,7 +4054,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var STORAGE_RELATIVE_URL = 'storage/';
+var STORAGE_RELATIVE_URL = 'resources/download/';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   isEmptyObject: function isEmptyObject(obj) {
     return lodash__WEBPACK_IMPORTED_MODULE_1___default().isEmpty(obj);

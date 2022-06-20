@@ -27,7 +27,7 @@ class PdfResourceRequest extends FormRequest
         $rules = [
             'resource_type_id' => ['required', 'exists:App\Models\ResourceType,id'],
             'title' => ['required', 'min:3', 'max:191', 'unique:App\Models\Resource,title'],
-            'url' => ['required', 'mimes:pdf', 'max:2048'],
+            'url' => ['required', 'file', 'mimes:pdf', 'max:2048'],
         ];
 
         return $rules;

@@ -2,7 +2,7 @@ import store from "../stores";
 import _ from 'lodash';
 import Swal from 'sweetalert2';
 import { PDF, HTML, LINK } from './ConstRepository';
-const STORAGE_RELATIVE_URL = 'storage/';
+const STORAGE_RELATIVE_URL = 'resources/download/';
 
 export default {
     isEmptyObject(obj) {
