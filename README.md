@@ -36,3 +36,5 @@ No credential required.
 - Laravel 9
 - Vuejs 2 (Vuejs applications are inside resources/js/admin location.)
 - postgres 14.3
+- Sail (https://laravel.com/docs/9.x/sail)
+- php 8.0
