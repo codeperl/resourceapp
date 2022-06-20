@@ -4,5 +4,5 @@ namespace App\Enums;
 
 class Paginator
 {
-    public const ITEM_PER_PAGE = 5;
+    public const ITEM_PER_PAGE = 20;
 }

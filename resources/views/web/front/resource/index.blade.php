@@ -13,6 +13,9 @@
     <section class="resource">
         <div class="container">
             <div class="row">
+                <div class="col-lg-12">
+                    <h2>Resource Listing</h2>
+                </div>
                 <div class="col-lg-12 entries">
                     @include('web.front.resource.partials.resources', ['resources' => $resources])
                 </div>

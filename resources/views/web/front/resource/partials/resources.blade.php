@@ -4,6 +4,7 @@
             <thead class="table-dark">
                 <tr>
                     <td scope="col">#</td>
+                    <td scope="col">Resource Type</td>
                     <td scope="col">Title</td>
                     <td scope="col">Action</td>
                 </tr>

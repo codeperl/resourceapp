@@ -6,6 +6,7 @@ use App\Models\ResourceType;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ResourceTypeRequest extends FormRequest
 {
@@ -27,13 +28,16 @@ class ResourceTypeRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => ['required', 'min:2', 'max:100', 'unique:App\Models\ResourceType,name'],
+            'name' => ['required', 'min:2', 'max:100', Rule::in([\App\Enums\ResourceType::PDF,
+                \App\Enums\ResourceType::HTML, \App\Enums\ResourceType::LINK]), 'unique:App\Models\ResourceType,name'],
             'slug' => ['nullable', 'min:2', 'max:191', 'unique:App\Models\ResourceType,slug'],
         ];
 
         if ($this->isMethod(Request::METHOD_PUT) || $this->isMethod(Request::METHOD_PATCH) ) {
             $rules = array_merge($rules, [
-                'name' => ['required', 'min:2', 'max:100', 'unique:App\Models\ResourceType,name,'.$this->resource_type->id],
+                'name' => ['required', 'min:2', 'max:100', Rule::in([\App\Enums\ResourceType::PDF,
+                    \App\Enums\ResourceType::HTML, \App\Enums\ResourceType::LINK]),
+                    'unique:App\Models\ResourceType,name,'.$this->resource_type->id],
                 'slug' => ['nullable', 'min:2', 'max:191', 'unique:App\Models\ResourceType,slug,'.$this->resource_type->id],
             ]);
         }

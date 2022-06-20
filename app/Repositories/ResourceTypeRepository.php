@@ -18,4 +18,9 @@ class ResourceTypeRepository extends Repository
     {
         parent::__construct($resourceType);
     }
+
+    public function isExists(string $name)
+    {
+        return $this->getModel()->where('name', $name)->exists();
+    }
 }

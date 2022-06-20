@@ -13,8 +13,15 @@
     <section class="resource">
         <div class="container">
             <div class="row">
+                <div class="col-lg-8">
+                    <h2>Resource Detail</h2>
+                </div>
+                <div class="col-lg-4">
+                    <a href="{{ route('web.front.resources.index') }}" class="btn btn-primary float-end">Go to Resource Listing</a>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12 entries">
-                    {{--{{ dd($resource) }}--}}
                     <table class="table align-middle table-sm table-striped table-hover table-borderless">
                         <thead class="table-dark">
                         <tr>
