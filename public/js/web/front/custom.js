@@ -7,8 +7,6 @@ window.copyToClipboard = function () {
   var copyText = document.getElementById("code_snippet");
   copyText.focus();
   copyText.select();
-  /*copyText.setSelectionRange(0, 99999);*/
-
   var range = document.createRange();
   range.selectNode(copyText);
   window.getSelection().addRange(range);
@@ -18,7 +16,6 @@ window.copyToClipboard = function () {
   if (typeof navigator.clipboard == 'undefined') {
     try {
       copyOperationStatus = document.execCommand('copy');
-      console.log(copyOperationStatus);
     } catch (err) {
       copyOperationStatus = false;
     }
