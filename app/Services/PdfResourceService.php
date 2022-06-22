@@ -69,13 +69,13 @@ class PdfResourceService implements Contracts\ResourceContract, InitiableContrac
             $oldFileName = $entity->url;
 
             if ($anotherFileSelected) {
-                $newPhotoMeta = $this->fileUploaderService->uploadFile($this->resourceRepository, $file);
+                $newFileMeta = $this->fileUploaderService->uploadFile($this->resourceRepository, $file);
 
-                if (!$newPhotoMeta['fileName'] || !$newPhotoMeta['extension'] || !$newPhotoMeta['mime_type']) {
+                if (!$newFileMeta['fileName'] || !$newFileMeta['extension'] || !$newFileMeta['mime_type']) {
                     throw new \Exception('File name or extension is missing! Operation reverted!');
                 }
 
-                $values['url'] = $newPhotoMeta['fileName'];
+                $values['url'] = $newFileMeta['fileName'];
             }
 
             $this->resourceRepository->update($entity, $values);
